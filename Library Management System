@@ -1,0 +1,95 @@
+
+# Create a library class
+# display book
+# lend book - (who owns the book if not present)
+# add book
+# return book
+
+# ThorLibrary = Library(listofbooks, library_name)
+
+
+#dictionary (books-nameofperson)
+
+# create a main function and run an infinite while loop asking
+# users for their input
+
+
+class Library:
+    def __init__(self, list, name):
+        self.booksList = list   #
+        self.name = name
+        self.lendDict = {} #stotring information about lending
+
+    def displayBooks(self):
+        print(f"We have following books in our library: {self.name} \n")
+        for book in self.booksList:
+            print(book)
+
+    def lendBook(self, user, book):
+        if book not in self.lendDict.keys():        #check if its avialable or not
+            self.lendDict.update({book:user})       #upate fn will uodate the user
+            print("Lender-Book database has been updated. You can take the book now")
+        else:           #if its used
+            print(f"Book is already being used by {self.lendDict[book]}")  #f string will also tell the name used by whom
+
+    def addBook(self, book):
+        self.booksList.append(book)     #koi naya book add ho toh ya purana hi vapas aajaae
+        print("Book has been added to the book list")
+
+    def returnBook(self, book):
+        self.lendDict.pop(book)     #if someone return the books
+
+if __name__ == '__main__':
+    #library take 2 args : name and library ka name
+    vaibhav = Library(['Chanakyaneeti', 'Ramayan', 'Mahabaharat', 'Shrimad Bhagwad Geeta','Python', 'Shiva Triology', 'BeingsalmanKhan', 'C++ Basics','Cristiano Roanldo ','Bible', 'Quran'], "Vaibhav's Library")
+
+
+#infinite while loop and making interactive screen
+    while(True):
+        print(f"Welcome to the {vaibhav.name} library. Enter your choice to continue in numbers \n")
+        print("1. Display Books")
+        print("2. Lend a Book")
+        print("3. Add a Book")
+        print("4. Return a Book")
+
+
+        customerinput = (input())     #defining the user choice
+
+        if customerinput not in ['1','2','3','4']:    #if user gives some other input than required then....
+            print("Please enter a valid option from above")
+            continue
+
+        else:       #it will act as per user input
+            customerinput = int(customerinput)
+
+
+        if customerinput == 1:
+            vaibhav.displayBooks()
+
+        elif customerinput == 2:
+            book = input("Enter the name of the book you want to lend:")
+            user = input("Enter your name")
+            vaibhav.lendBook(user, book)
+
+        elif customerinput == 3:
+            book = input("Enter the name of the book you want to add:")
+            vaibhav.addBook(book)
+
+        elif customerinput == 4:
+            book = input("Enter the name of the book you want to return:")
+            vaibhav.returnBook(book)
+
+        else:
+            print("Not a valid option")
+
+        print("Press q to quit and c to continue")
+
+        customerinput2 = ""       #defining user_choice 2
+        while(customerinput2!="c" and customerinput2!="q"):    #because agar dono nahi hua to? issliye and use hua
+            customerinput2 = input()
+            if customerinput2 == "q":
+                exit()   #because q se quit !
+
+            elif customerinput2 == "c":
+                continue
+
